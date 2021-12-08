@@ -62,6 +62,7 @@
                                             <outlet property="dateLabel" destination="pNi-iE-N3B" id="sSc-0W-UVQ"/>
                                             <outlet property="thumbnailImageView" destination="eSC-f6-kBV" id="ano-LZ-K7d"/>
                                             <outlet property="titleLabel" destination="Y9q-1c-MQ7" id="VLj-IX-XNH"/>
+                                            <segue destination="q5c-c9-0T2" kind="show" identifier="toDetails" id="YvO-2O-RSe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -84,8 +85,77 @@
             </objects>
             <point key="canvasLocation" x="20" y="38"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="J7I-Tu-tBk">
+            <objects>
+                <viewController id="q5c-c9-0T2" customClass="DetailViewController" customModule="youtube_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="umN-BJ-bCL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="68p-pH-KS4">
+                                <rect key="frame" x="20" y="50" width="374" height="758"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRs-GV-0k6">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qh1-zn-QDA">
+                                        <rect key="frame" x="0.0" y="30.5" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdl-Xt-HBZ">
+                                        <rect key="frame" x="0.0" y="61" width="374" height="210.5"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vdl-Xt-HBZ" secondAttribute="height" multiplier="1280:720" id="ZdT-se-4YA"/>
+                                        </constraints>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="247" verticalCompressionResistancePriority="747" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yXx-36-Bvb">
+                                        <rect key="frame" x="0.0" y="281.5" width="374" height="476.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="06J-aY-FDW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="68p-pH-KS4" firstAttribute="leading" secondItem="06J-aY-FDW" secondAttribute="leading" constant="20" id="76j-02-3Zo"/>
+                            <constraint firstItem="06J-aY-FDW" firstAttribute="bottom" secondItem="68p-pH-KS4" secondAttribute="bottom" id="Eu3-YR-z32"/>
+                            <constraint firstItem="68p-pH-KS4" firstAttribute="top" secondItem="06J-aY-FDW" secondAttribute="top" constant="50" id="egk-PI-ss2"/>
+                            <constraint firstItem="06J-aY-FDW" firstAttribute="trailing" secondItem="68p-pH-KS4" secondAttribute="trailing" constant="20" id="vzR-LP-M0N"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lPf-c8-g9h"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="qh1-zn-QDA" id="vwe-zM-GqQ"/>
+                        <outlet property="textView" destination="yXx-36-Bvb" id="ro1-gu-reX"/>
+                        <outlet property="titleLabel" destination="IRs-GV-0k6" id="aaT-Kh-VVH"/>
+                        <outlet property="webView" destination="vdl-Xt-HBZ" id="mpk-IB-KSU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zlZ-cL-kJd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="40"/>
+        </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

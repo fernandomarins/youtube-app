@@ -14,6 +14,8 @@ class VideosViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    // - MARK: Lifecycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +24,8 @@ class VideosViewController: UIViewController {
         
         loadData()
     }
+    
+    // - MARK: Fetching data
     
     fileprivate func loadData() {
         model.getVideos { response, error in
@@ -39,11 +43,28 @@ class VideosViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard tableView.indexPathForSelectedRow != nil else {
+            return
+        }
+        
+        let selectedVideo = videos[tableView.indexPathForSelectedRow!.row]
+        
+        // Performing the segue to the correct view controller
+        if segue.identifier == "toDetails" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.video = selectedVideo
+            
+            // Deselecting the row
+            tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
+        }
+    }
 }
 
 extension VideosViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return videos.count
     }
     
@@ -52,9 +73,7 @@ extension VideosViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Configure the cell
         cell.setCell(videos[indexPath.row])
-        
-        cell.textLabel?.text = title
-        
+                
         return cell
     }
     
