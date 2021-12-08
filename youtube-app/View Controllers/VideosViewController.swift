@@ -48,10 +48,10 @@ extension VideosViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.videoCellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.videoCellId, for: indexPath) as! VIdeoTableViewCell
         
         // Configure the cell
-        let title = videos[indexPath.row].snippet?.title
+        cell.setCell(videos[indexPath.row])
         
         cell.textLabel?.text = title
         

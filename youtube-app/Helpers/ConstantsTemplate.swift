@@ -10,7 +10,7 @@
  */
 import Foundation
 
-
+/*
 struct Constants {
     
     static var apiKey = ""
@@ -18,3 +18,4 @@ struct Constants {
     static var url = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(Constants.playlistId)&key=\(Constants.apiKey)"
     static let videoCellId = "videoCell"
 }
+ */

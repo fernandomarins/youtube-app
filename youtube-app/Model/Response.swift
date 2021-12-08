@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Response: Codable {
+struct Response: Decodable {
     let items: [Item]
 }
 
-struct Item: Codable {
+struct Item: Decodable {
     let snippet: Snippet?
 }
 
-struct Snippet: Codable {
+struct Snippet: Decodable {
     let resourceId: ResourceId
     let title: String
     let description: String
@@ -23,18 +23,14 @@ struct Snippet: Codable {
     let publishedAt: String
 }
 
-struct ResourceId: Codable {
+struct ResourceId: Decodable {
     let videoId: String
 }
 
-struct Thumbnails: Codable {
-    let default_: Default?
-    
-    enum CodingKeys: String, CodingKey {
-        case default_ = "default"
-    }
+struct Thumbnails: Decodable {
+    let high: High
 }
 
-struct Default: Codable {
+struct High: Decodable {
     let url: String
 }
