@@ -9,7 +9,7 @@ import Foundation
 
 class Model {
     
-    func getVideos() {
+    func getVideos(completion: @escaping(Response?, Error?) -> Void) {
         
         // Create a URL object
         let url = URL(string: Constants.url)
@@ -23,11 +23,20 @@ class Model {
         let dataTask = session.dataTask(with: url!) { data, response, error in
             
             guard let data = data else {
+                completion(nil, error)
                 return
             }
             
             // Parsing data into video object
-            print(response)
+            let decoder = JSONDecoder()
+            
+            do {
+                let responseObject = try decoder.decode(Response.self, from: data)
+                completion(responseObject, nil)
+            } catch {
+                debugPrint(error)
+                completion(nil, error)
+            }
 
         }
         
